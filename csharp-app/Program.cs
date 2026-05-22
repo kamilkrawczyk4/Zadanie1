@@ -6,11 +6,11 @@ float result = 0;
 do
 {
     Console.WriteLine("Wprowadź pierwszą liczbę: ");
-    float a = int.Parse(Console.ReadLine());
+    float a = float.Parse(Console.ReadLine() ?? "0");
     Console.WriteLine("Wprowadź drugą liczbę: ");
-    float b = int.Parse(Console.ReadLine());
+    float b = float.Parse(Console.ReadLine() ?? "0");
     Console.WriteLine("Wybierz operację (+, -, *, /): ");
-    char operation = char.Parse(Console.ReadLine());
+    char operation = char.Parse(Console.ReadLine() ?? "");
 
     switch (operation)
     {
