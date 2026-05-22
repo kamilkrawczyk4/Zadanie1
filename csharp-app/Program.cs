@@ -5,6 +5,8 @@ float result = 0;
 
 do
 {
+    isCorrect = true;
+
     Console.WriteLine("Wprowadź pierwszą liczbę: ");
     float a = float.Parse(Console.ReadLine() ?? "0");
     Console.WriteLine("Wprowadź drugą liczbę: ");
