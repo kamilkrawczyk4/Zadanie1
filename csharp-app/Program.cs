@@ -40,5 +40,3 @@ while (!isCorrect);
 
 Console.WriteLine("Wynik: " + result);
 Console.ReadLine();
-
-}
