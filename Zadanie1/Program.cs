@@ -33,10 +33,10 @@ void CalculateAverageGrade()
     float average = 0;
     for (int i = 0; i < numberOfGrades; i++)
     {
-        Console.WriteLine("Wpisz ocenę " + (i + 1) + ": ");
+        Console.WriteLine("Wpisz ocenę " + (i + 1) + " (1-6): ");
         int grade;
-        while (!int.TryParse(Console.ReadLine(), out grade))
-            Console.WriteLine("Nieprawidłowa ocena, wpisz liczbę: ");
+        while (!int.TryParse(Console.ReadLine(), out grade) || grade < 1 || grade > 6)
+            Console.WriteLine("Nieprawidłowa ocena, wpisz liczbę od 1 do 6: ");
         average += grade;
     }
     average /= numberOfGrades;
