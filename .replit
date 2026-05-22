@@ -24,12 +24,12 @@ args = "Run C# App"
 name = "Run C# App"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "cd csharp-app && dotnet run"
-
 [workflows.workflow.metadata]
 outputType = "console"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd Zadanie1 && dotnet run"
 
 [agent]
 stack = "PNPM_WORKSPACE"

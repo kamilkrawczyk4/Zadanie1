@@ -49,5 +49,5 @@ Thumbs.db
 .local/
 
 # C# / .NET
-csharp-app/bin/
-csharp-app/obj/
+Zadanie1/bin/
+Zadanie1/obj/
