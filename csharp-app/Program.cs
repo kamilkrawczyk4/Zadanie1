@@ -6,7 +6,7 @@ float b = int.Parse(Console.ReadLine());
 Console.WriteLine("Wybierz operację (+, -, *, /): ");
 char operation = char.Parse(Console.ReadLine());
 
-float result;
+float result = 0;
 
 switch (operation) {
     case '+':
