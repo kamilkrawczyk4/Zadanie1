@@ -47,3 +47,7 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# C# / .NET
+csharp-app/bin/
+csharp-app/obj/
