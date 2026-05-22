@@ -2,7 +2,10 @@ Console.WriteLine("Wybierz program: ");
 Console.WriteLine("1. Kalkulator");
 Console.WriteLine("2. Konwerter temperatur");
 Console.WriteLine("3. Obliczanie średniej ocen");
-int choice = int.Parse(Console.ReadLine());
+
+int choice;
+while (!int.TryParse(Console.ReadLine(), out choice))
+    Console.WriteLine("Nieprawidłowy wybór, wpisz liczbę: ");
 
 switch (choice)
 {
@@ -23,12 +26,17 @@ switch (choice)
 void CalculateAverageGrade()
 {
     Console.WriteLine("Wpisz liczbę ocen: ");
-    int numberOfGrades = int.Parse(Console.ReadLine());
+    int numberOfGrades;
+    while (!int.TryParse(Console.ReadLine(), out numberOfGrades) || numberOfGrades <= 0)
+        Console.WriteLine("Nieprawidłowa wartość, wpisz liczbę całkowitą większą od 0: ");
+
     float average = 0;
     for (int i = 0; i < numberOfGrades; i++)
     {
-        Console.WriteLine("Wpisz ocenę " + (i + 1) + ": ");
-        int grade = int.Parse(Console.ReadLine());
+        Console.WriteLine("Wpisz ocenę " + (i + 1) + " (1-6): ");
+        int grade;
+        while (!int.TryParse(Console.ReadLine(), out grade) || grade < 1 || grade > 6)
+            Console.WriteLine("Nieprawidłowa ocena, wpisz liczbę od 1 do 6: ");
         average += grade;
     }
     average /= numberOfGrades;
@@ -40,9 +48,20 @@ void CalculateAverageGrade()
 void ConvertTemperature()
 {
     Console.WriteLine("Wpisz c, jeśli chcesz zamienić stopnie Celsjusza na Fahrenheita lub f, jeśli chcesz zamienić stopnie Fahrenheita na Celsjusza: ");
-    char unit = char.Parse(Console.ReadLine());
+    char unit;
+    string? unitInput;
+    do
+    {
+        unitInput = Console.ReadLine();
+    }
+    while (string.IsNullOrEmpty(unitInput) || !char.TryParse(unitInput, out unit) || (unit != 'c' && unit != 'f'));
+    char.TryParse(unitInput, out unit);
+
     Console.WriteLine("Wpisz temperaturę: ");
-    float temperature = float.Parse(Console.ReadLine());
+    float temperature;
+    while (!float.TryParse(Console.ReadLine(), out temperature))
+        Console.WriteLine("Nieprawidłowa temperatura, wpisz liczbę: ");
+
     switch (unit)
     {
         case 'c':
@@ -50,9 +69,6 @@ void ConvertTemperature()
             break;
         case 'f':
             temperature = (temperature - 32) / 1.8f;
-            break;
-        default:
-            Console.WriteLine("Nieprawidłowy wybór!");
             break;
     }
 
@@ -62,7 +78,6 @@ void ConvertTemperature()
 static void Calculate()
 {
     bool isCorrect = true;
-
     float result = 0;
 
     do
@@ -70,11 +85,24 @@ static void Calculate()
         isCorrect = true;
 
         Console.WriteLine("Wprowadź pierwszą liczbę: ");
-        float a = float.Parse(Console.ReadLine() ?? "0");
+        float a;
+        while (!float.TryParse(Console.ReadLine(), out a))
+            Console.WriteLine("Nieprawidłowa liczba, spróbuj ponownie: ");
+
         Console.WriteLine("Wprowadź drugą liczbę: ");
-        float b = float.Parse(Console.ReadLine() ?? "0");
+        float b;
+        while (!float.TryParse(Console.ReadLine(), out b))
+            Console.WriteLine("Nieprawidłowa liczba, spróbuj ponownie: ");
+
         Console.WriteLine("Wybierz operację (+, -, *, /): ");
-        char operation = char.Parse(Console.ReadLine() ?? "");
+        char operation;
+        string? opInput;
+        do
+        {
+            opInput = Console.ReadLine();
+        }
+        while (string.IsNullOrEmpty(opInput) || !char.TryParse(opInput, out operation));
+        char.TryParse(opInput, out operation);
 
         switch (operation)
         {
@@ -91,8 +119,10 @@ static void Calculate()
                 if (b != 0)
                     result = a / b;
                 else
+                {
                     Console.WriteLine("Nie można dzielić przez zero!");
-                isCorrect = false;
+                    isCorrect = false;
+                }
                 break;
             default:
                 Console.WriteLine("Nieprawidłowa operacja!");
